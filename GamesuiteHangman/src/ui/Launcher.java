@@ -7,10 +7,22 @@ import domain.Speler;
 public class Launcher {
 
 	public static void main(String[] args) {
-		String naam = JOptionPane.showInputDialog("Welkom! \nHoe heet je?");
-		Speler speler = new Speler(naam);
-
-		JOptionPane.showMessageDialog(null, "... zal binnekort spelen", speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
+		Speler speler = new Speler(vraagNaam());
+		PictionaryUi ui = new PictionaryUi(speler);
+		ui.showMenu();
+	}
+	
+	public static String vraagNaam(){
+		String naam;
+		while(true){
+			naam = JOptionPane.showInputDialog("Naam:");
+			if(naam.trim().equals("")){
+				JOptionPane.showMessageDialog(null, "Naam mag niet leeg zijn.");
+				continue;
+			}
+			break;
+		}
+		return naam;
 	}
 
 }
